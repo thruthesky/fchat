@@ -3,6 +3,9 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
+
+version: 1.0.0+1
+
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
@@ -17,6 +20,8 @@ dependencies:
   google_sign_in: ^4.5.1
   cloud_firestore: ^0.13.7
   firebase_messaging: ^6.0.16
+
+  get: ^3.4.2
 
 
 dev_dependencies:

@@ -1,4 +1,4 @@
-package com.example.fchat
+package com.sonub.fchat
 
 import io.flutter.embedding.android.FlutterActivity
 

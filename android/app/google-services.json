@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "223421186295",
+    "firebase_url": "https://enginef-chat.firebaseio.com",
+    "project_id": "enginef-chat",
+    "storage_bucket": "enginef-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223421186295:android:73a17e264a166cd32cd3f2",
+        "android_client_info": {
+          "package_name": "com.sonub.fchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223421186295-2strhpril8m8rvp018kjk5o849istdan.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9hLD49FGapHDi3xiCtWe9uVm5uTb-ouc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223421186295-2strhpril8m8rvp018kjk5o849istdan.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "223421186295-lu7isb7ubqo09cct980bqigvatg6chvj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sonub.fchat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

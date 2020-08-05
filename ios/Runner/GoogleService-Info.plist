@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>223421186295-lu7isb7ubqo09cct980bqigvatg6chvj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.223421186295-lu7isb7ubqo09cct980bqigvatg6chvj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB8odTUEkexisqOKw6RplJck4waxSn0OBs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>223421186295</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sonub.fchat</string>
+	<key>PROJECT_ID</key>
+	<string>enginef-chat</string>
+	<key>STORAGE_BUCKET</key>
+	<string>enginef-chat.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:223421186295:ios:d7d9e31a496790d32cd3f2</string>
+	<key>DATABASE_URL</key>
+	<string>https://enginef-chat.firebaseio.com</string>
+</dict>
+</plist>
