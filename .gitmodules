@@ -1,0 +1,3 @@
+[submodule "lib/flutterbase_v2"]
+	path = lib/flutterbase_v2
+	url = https://github.com/thruthesky/flutterbase_v2
