@@ -40,9 +40,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    Get.toNamed(Routes.userList);
+                    Get.toNamed(Routes.chat);
                   },
-                  child: Text('User List'),
+                  child: Text('Chatting'),
                 )
               ],
             ),
