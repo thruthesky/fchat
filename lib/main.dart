@@ -2,7 +2,6 @@ import 'package:fchat/chat.page.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
 import 'package:fchat/home.page.dart';
 import 'package:fchat/services/routes.dart';
-import 'package:fchat/user_list.page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +34,6 @@ class _MyAppState extends State<MyApp> {
       initialRoute: Routes.home,
       getPages: [
         GetPage(name: Routes.home, page: () => HomePage()),
-        GetPage(name: Routes.userList, page: () => UserListPage()),
         GetPage(name: Routes.chat, page: () => ChatPage()),
       ],
     );
