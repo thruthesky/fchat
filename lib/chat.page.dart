@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
+import 'package:fchat/flutterbase_v2/flutterbase.notification.service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,8 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  final FlutterbaseNotificationService _notificationService =
+      FlutterbaseNotificationService();
   String groupChatId = 'mainChatRoom';
 
   var listMessage;
@@ -29,7 +32,8 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     super.initState();
     uid = _controller.user.uid;
-    setState(() {});
+
+    // if (_controller.chatNotificationSubscription != null) {}
   }
 
   @override
