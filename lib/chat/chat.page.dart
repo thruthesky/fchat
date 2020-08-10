@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fchat/chat/chat.input_box.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,11 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  String groupChatId = 'mainChatRoom';
+  // String groupChatId = 'mainChatRoom';
 
+  CollectionReference colRoom = Firestore.instance.collection('chatRoom');
+
+  ///
   var listMessage;
   final FlutterbaseController _controller = Get.find();
   String uid;
@@ -21,7 +25,9 @@ class _ChatPageState extends State<ChatPage> {
   final TextEditingController textEditingController =
       new TextEditingController();
   final ScrollController listScrollController = new ScrollController();
-  final FocusNode focusNode = new FocusNode();
+
+  /// TODO: What is the focus node?
+  // final FocusNode focusNode = new FocusNode();
 
   Map<String, dynamic> args = Get.arguments;
 
@@ -43,12 +49,17 @@ class _ChatPageState extends State<ChatPage> {
       ),
       body: Stack(
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              // List of messages
-              buildListMessage(),
-              buildInput(),
-            ],
+          SafeArea(
+            child: Column(
+              children: <Widget>[
+                // List of messages
+                buildListMessage(),
+                ChatInputBox(
+                  controller: textEditingController,
+                  onPressed: onSendMessage,
+                )
+              ],
+            ),
           ),
 
           // Loading
@@ -58,28 +69,39 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  void onSendMessage(String content, int type) {
-    // type: 0 = text, 1 = image, 2 = sticker
+  void onSendMessage() {
+    String content = textEditingController.text;
     if (content.trim() != '') {
       textEditingController.clear();
 
-      var documentReference = Firestore.instance
-          .collection('chatRoom')
-          .document(DateTime.now().millisecondsSinceEpoch.toString());
+      // var documentReference = Firestore.instance
+      //     .collection('chatRoom')
+      //     .document(DateTime.now().millisecondsSinceEpoch.toString());
 
-      Firestore.instance.runTransaction((transaction) async {
-        await transaction.set(
-          documentReference,
-          {
-            'uid': uid,
-            'displayName': _controller.user.displayName,
-            'photoUrl': _controller.user.photoUrl,
-            'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
-            'content': content,
-            // 'type': type
-          },
-        );
-      });
+      // Firestore.instance.runTransaction(
+      //   (transaction) async {
+      //     await transaction.set(
+      //       documentReference,
+      //       {
+      //         'uid': uid,
+      //         'displayName': _controller.user.displayName,
+      //         'photoUrl': _controller.user.photoUrl,
+      //         'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
+      //         'content': content,
+      //         // 'type': type
+      //       },
+      //     );
+      //   },
+      // );
+
+      var data = {
+        'uid': uid,
+        'displayName': _controller.user.displayName,
+        'photoUrl': _controller.user.photoUrl,
+        'timestamp': FieldValue.serverTimestamp(),
+        'content': content,
+      };
+      colRoom.add(data);
       listScrollController.animateTo(0.0,
           duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     } else {
@@ -87,72 +109,30 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
-  Widget buildInput() {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Padding(padding: EdgeInsets.only(left: 8.0)),
-          // Edit text
-          Flexible(
-            child: Container(
-              child: TextField(
-                style: TextStyle(fontSize: 15.0),
-                controller: textEditingController,
-                decoration: InputDecoration.collapsed(
-                  hintText: 'Type your message...',
-                ),
-                focusNode: focusNode,
-              ),
-            ),
-          ),
-
-          // Button send message
-          Material(
-            child: new Container(
-              margin: new EdgeInsets.symmetric(horizontal: 8.0),
-              child: new IconButton(
-                  icon: new Icon(Icons.send),
-                  onPressed: () =>
-                      {onSendMessage(textEditingController.text, 0)}),
-            ),
-            color: Colors.white,
-          ),
-        ],
-      ),
-      width: double.infinity,
-      height: 50.0,
-      decoration: new BoxDecoration(
-          border: new Border(top: new BorderSide(width: 0.5)),
-          color: Colors.white),
-    );
-  }
-
   Widget buildListMessage() {
     return Flexible(
-      child: groupChatId == ''
-          ? Center(child: CircularProgressIndicator())
-          : StreamBuilder(
-              stream: Firestore.instance
-                  .collection('chatRoom')
-                  .orderBy('timestamp', descending: true)
-                  .limit(30)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center();
-                } else {
-                  listMessage = snapshot.data.documents;
-                  return ListView.builder(
-                    padding: EdgeInsets.all(10.0),
-                    itemBuilder: (context, index) =>
-                        buildItem(index, snapshot.data.documents[index].data),
-                    itemCount: snapshot.data.documents.length,
-                    reverse: true,
-                    controller: listScrollController,
-                  );
-                }
-              },
-            ),
+      child: StreamBuilder(
+        stream: Firestore.instance
+            .collection('chatRoom')
+            .orderBy('timestamp', descending: true)
+            .limit(30)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center();
+          } else {
+            listMessage = snapshot.data.documents;
+            return ListView.builder(
+              padding: EdgeInsets.all(10.0),
+              itemBuilder: (context, index) =>
+                  buildItem(index, snapshot.data.documents[index].data),
+              itemCount: snapshot.data.documents.length,
+              reverse: true,
+              controller: listScrollController,
+            );
+          }
+        },
+      ),
     );
   }
 

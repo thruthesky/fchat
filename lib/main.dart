@@ -1,4 +1,4 @@
-import 'package:fchat/chat.page.dart';
+import 'package:fchat/chat/chat.page.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
 import 'package:fchat/home.page.dart';
 import 'package:fchat/services/routes.dart';
