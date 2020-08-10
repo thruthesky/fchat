@@ -16,8 +16,6 @@ class _ChatPageState extends State<ChatPage> {
 
   var listMessage;
   final FlutterbaseController _controller = Get.find();
-  String peerId;
-  String peerAvatar;
   String uid;
 
   final TextEditingController textEditingController =
@@ -36,9 +34,6 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    // print(args);
-    // print(args['peerID']);
-    // print(args['peerAvatar']);
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(
