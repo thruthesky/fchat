@@ -1,5 +1,7 @@
+import 'package:fchat/chat.page.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
 import 'package:fchat/home.page.dart';
+import 'package:fchat/services/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,11 +26,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: HomePage());
+    return GetMaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      initialRoute: Routes.home,
+      getPages: [
+        GetPage(name: Routes.home, page: () => HomePage()),
+        GetPage(name: Routes.chat, page: () => ChatPage()),
+      ],
+    );
   }
 }

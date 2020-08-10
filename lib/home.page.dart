@@ -1,7 +1,8 @@
 import 'package:fchat/flutterbase_v2/flutterbase.auth.service.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
+import 'package:fchat/services/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,17 +27,25 @@ class _HomePageState extends State<HomePage> {
                   )
                 : Text('Not logged in'),
           ),
-          Row(
-            children: <Widget>[
-              RaisedButton(
-                onPressed: () async {
-                  var _auth = FlutterbaseAuthService();
-                  _auth.loginWithGoogleAccount();
-                  setState(() {});
-                },
-                child: Text('Google Login'),
-              )
-            ],
+          Center(
+            child: Column(
+              children: <Widget>[
+                RaisedButton(
+                  onPressed: () async {
+                    var _auth = FlutterbaseAuthService();
+                    _auth.loginWithGoogleAccount();
+                    setState(() {});
+                  },
+                  child: Text('Google Login'),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.chat);
+                  },
+                  child: Text('Chatting'),
+                )
+              ],
+            ),
           )
         ],
       ),
