@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:223421186295:android:73a17e264a166cd32cd3f2",
+        "mobilesdk_app_id": "1:223421186295:android:1a325ad9972d73ea2cd3f2",
         "android_client_info": {
-          "package_name": "com.sonub.fchat"
+          "package_name": "com.englishfun.play"
         }
       },
       "oauth_client": [
@@ -32,10 +32,10 @@
               "client_type": 3
             },
             {
-              "client_id": "223421186295-lu7isb7ubqo09cct980bqigvatg6chvj.apps.googleusercontent.com",
+              "client_id": "223421186295-ffsgtovrsm1svqs9o38mqkf07i0u57h0.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.sonub.fchat"
+                "bundle_id": "com.englishfun.play"
               }
             }
           ]

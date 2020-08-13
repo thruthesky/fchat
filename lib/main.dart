@@ -16,17 +16,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final FlutterbaseController flutterbaseController =
-      Get.put(FlutterbaseController());
+  final FlutterbaseController flutterbaseController = Get.put(
+    FlutterbaseController(
+      facebookAppId: 619946068654098,
+      facebookRedirectUrl:
+          'https://www.facebook.com/connect/login_success.html',
+      kakaotalkClientId: 'c52fa368045ba2d52d6ca98ee8f1234b',
+      kakaotalkJavascriptClientId: '370f1e7ce499f3e38326e33f00de8741',
+    ),
+  );
 
-  @override
-  void initState() {
-    super.initState();
-    flutterbaseController.setLoginForFacebook(
-      appId: 619946068654098,
-      redirectUrl: 'https://www.facebook.com/connect/login_success.html',
-    );
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   flutterbaseController.setLoginForFacebook(
+  //     appId: 619946068654098,
+  //     redirectUrl: 'https://www.facebook.com/connect/login_success.html',
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
