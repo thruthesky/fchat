@@ -29,6 +29,8 @@ dependencies:
   cached_network_image: ^2.2.0+1
   intl: ^0.15.7
 
+  flutter_webview_plugin: ^0.3.11
+
 
 dev_dependencies:
   flutter_test:

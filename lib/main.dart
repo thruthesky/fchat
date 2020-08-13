@@ -22,6 +22,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    flutterbaseController.setLoginForFacebook(
+      appId: 619946068654098,
+      redirectUrl: 'https://www.facebook.com/connect/login_success.html',
+    );
   }
 
   @override

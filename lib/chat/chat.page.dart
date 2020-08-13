@@ -12,10 +12,9 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  CollectionReference colRoom = Firestore.instance.collection('chatRoom');
+  CollectionReference chatRoom = Firestore.instance.collection('chatRoom');
 
   final FlutterbaseController firebaseController = Get.find();
-  // String uid;
 
   final TextEditingController textEditingController =
       new TextEditingController();
@@ -28,19 +27,18 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
-    // uid = firebaseController.user.uid;
-    setState(() {});
-
     initFirebase();
   }
 
   initFirebase() async {
-    QuerySnapshot qs = await colRoom
+    /// Get the last 30 messagese from chat room.
+    QuerySnapshot chats = await chatRoom
         .orderBy('timestamp', descending: true)
         .limit(30)
         .getDocuments();
 
-    final docs = qs.documents;
+    ///
+    final docs = chats.documents;
 
     if (docs.length > 0) {
       docs.forEach(
@@ -53,7 +51,7 @@ class _ChatPageState extends State<ChatPage> {
       setState(() {});
     }
 
-    colRoom.orderBy('timestamp', descending: true).limit(1).snapshots().listen(
+    chatRoom.orderBy('timestamp', descending: true).limit(1).snapshots().listen(
           (data) => data.documents.forEach(
             (doc) {
               var data = doc.data;
@@ -116,7 +114,7 @@ class _ChatPageState extends State<ChatPage> {
         'content': content,
       };
       // print('add: $data');
-      colRoom.add(data);
+      chatRoom.add(data);
       listScrollController.animateTo(0.0,
           duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     } else {
