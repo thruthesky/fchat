@@ -1,5 +1,6 @@
 import 'package:fchat/flutterbase_v2/flutterbase.auth.service.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
+import 'package:fchat/flutterbase_v2/widgets/login/login.form.dart';
 import 'package:fchat/services/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,26 +19,10 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: <Widget>[
-          GetBuilder<FlutterbaseController>(
-            id: 'auth',
-            builder: (_) => _.loggedIn
-                ? FlatButton(
-                    child: Text('Logged in as ${_.user.displayName} [Logout]'),
-                    onPressed: () => FlutterbaseAuthService().logout(),
-                  )
-                : Text('Not logged in'),
-          ),
           Center(
             child: Column(
               children: <Widget>[
-                RaisedButton(
-                  onPressed: () async {
-                    var _auth = FlutterbaseAuthService();
-                    _auth.loginWithGoogleAccount();
-                    setState(() {});
-                  },
-                  child: Text('Google Login'),
-                ),
+                LoginForm(),
                 RaisedButton(
                   onPressed: () {
                     Get.toNamed(Routes.chat);
