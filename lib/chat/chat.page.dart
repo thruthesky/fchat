@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fchat/chat/chat.input_box.dart';
 import 'package:fchat/chat/chat.message.dart';
@@ -6,7 +5,6 @@ import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class ChatPage extends StatefulWidget {
   @override
@@ -14,21 +12,14 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  // String groupChatId = 'mainChatRoom';
-
   CollectionReference colRoom = Firestore.instance.collection('chatRoom');
 
-  ///
-  var listMessage;
   final FlutterbaseController _controller = Get.find();
   String uid;
 
   final TextEditingController textEditingController =
       new TextEditingController();
   final ScrollController listScrollController = new ScrollController();
-
-  /// TODO: What is the focus node?
-  // final FocusNode focusNode = new FocusNode();
 
   Map<String, dynamic> args = Get.arguments;
 
@@ -56,11 +47,9 @@ class _ChatPageState extends State<ChatPage> {
         (doc) {
           var data = doc.data;
           data['id'] = doc.documentID;
-          // print(data);
           messages.add(data);
         },
       );
-      // print(messages);
       setState(() {});
     }
 
