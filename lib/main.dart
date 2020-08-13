@@ -1,7 +1,7 @@
 import 'package:fchat/chat.page.dart';
-import 'package:fchat/flutterbase_v2/flutterbase.auth.service.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.controller.dart';
 import 'package:fchat/flutterbase_v2/flutterbase.notification.service.dart';
+import 'package:fchat/flutterbase_v2/widgets/chat/chat.page.dart';
 import 'package:fchat/home.page.dart';
 import 'package:fchat/services/routes.dart';
 import 'package:flutter/material.dart';
