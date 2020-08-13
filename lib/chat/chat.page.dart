@@ -14,8 +14,8 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   CollectionReference colRoom = Firestore.instance.collection('chatRoom');
 
-  final FlutterbaseController _controller = Get.find();
-  String uid;
+  final FlutterbaseController firebaseController = Get.find();
+  // String uid;
 
   final TextEditingController textEditingController =
       new TextEditingController();
@@ -28,7 +28,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
-    uid = _controller.user.uid;
+    // uid = firebaseController.user.uid;
     setState(() {});
 
     initFirebase();
@@ -109,9 +109,9 @@ class _ChatPageState extends State<ChatPage> {
     if (content.trim() != '') {
       textEditingController.clear();
       var data = {
-        'uid': uid,
-        'displayName': _controller.user.displayName,
-        'photoUrl': _controller.user.photoUrl,
+        'uid': firebaseController.user.uid,
+        'displayName': firebaseController.user.displayName,
+        'photoUrl': firebaseController.user.photoUrl,
         'timestamp': FieldValue.serverTimestamp(),
         'content': content,
       };
